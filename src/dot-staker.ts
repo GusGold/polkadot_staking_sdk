@@ -232,17 +232,13 @@ export class DOTStaker {
   }
 
   /**
-   * Deprecated!
+   * Migrates the controller account back to the Stash account. Required once before chilling if `setController()` was used to set a different controller.
    * @param vaultAccountId - stash vault account id
-   * @param controllerAddress - new controller address
    */
   public async setController(
-    vaultAccountId: string,
-    controllerAddress: string
+    vaultAccountId: string
   ) {
-    throw new Error(
-      "setController is no longer supported in DOT / KSM / WND, for more information see README.md"
-    );
+    await this.sendTransaction({params: ['staking.setController'], vaultAccountId, txNote: `Migrate controller back to stash vault`});
   }
 
   /**
