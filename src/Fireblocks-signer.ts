@@ -149,7 +149,7 @@ export async function sendTransaction(
     result = await api.tx[section][method](...rest);
   }
 
-  result.signAndSend(account, options, (result) => {
+  await result.signAndSend(account, options, (result) => {
     if (result.isInBlock || result.isFinalized) {
       if (result.dispatchError?.isModule) {
         const decoded = api.registry.findMetaError(
